@@ -47,6 +47,11 @@ public final class VersionUtil {
             if (version == null) {
                 throw new IllegalArgumentException("Version can not be null");
             }
+            // hack for pre-releases & release candidates
+            int idx = version.indexOf('-');
+            if (idx != -1) {
+                version = version.substring(0, idx);
+            }
             if (!version.matches("[0-9]+(\\.[0-9]+)*")) {
                 throw new IllegalArgumentException("Invalid version format");
             }
